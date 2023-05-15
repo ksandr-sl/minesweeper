@@ -70,4 +70,33 @@ img {
 h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
   font-weight: 400;
+}
+
+.field {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 50px auto;
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 1px;
+}
+
+.field-row {
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-column-gap: 1px;
+     -moz-column-gap: 1px;
+          column-gap: 1px;
+}
+
+.cell {
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  cursor: pointer;
+}
+.cell.bomb {
+  background-color: black;
+  border-radius: 50%;
 }/*# sourceMappingURL=style.css.map */

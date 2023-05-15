@@ -1,1 +1,27 @@
 @import "nullstyle.scss";
+
+.field {
+  width: fit-content;
+  margin: 50px auto;
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 1px;
+}
+
+.field-row {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 1px;
+}
+
+.cell {
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  cursor: pointer;
+
+  &.bomb {
+    background-color: black;
+    border-radius: 50%;
+  }
+}
