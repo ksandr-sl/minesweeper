@@ -1,5 +1,7 @@
 export default class Cell {
-  constructor(isBomb) {
-    this.isBomb = isBomb;
+  constructor() {
+    this.isBomb = false;
+    this.open = false;
+    this.hasFlag = false;
   }
 }
