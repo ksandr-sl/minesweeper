@@ -4,11 +4,54 @@ body {
   background-color: #bbbbbb;
 }
 
+.title {
+  position: relative;
+  top: 50px;
+  width: fit-content;
+  margin: 0 auto;
+  font-size: 100px;
+  font-weight: 700;
+  text-align: center;
+  color: transparent;
+  background-image: url('../img/gif/rock_explosion.gif');
+  background-position: -120px -100px;
+  background-size: 900px;
+  background-clip: text;
+}
+
+.choose-difficulty {
+  width: fit-content;
+  margin: 100px auto 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.difficulties {
+  margin-top: 40px;
+}
+
+.easy,
+.medium,
+.hard {
+  width: 100px;
+  margin: 10px auto;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+
+  border: 2px solid #808080;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  cursor: pointer;
+}
+
 .container {
   position: relative;
   top: 20px;
-  padding-top: 10px;
-  max-width: 300px;
+  padding: 10px;
+  width: fit-content;
   margin: auto;
   text-align: center;
   background-color: #c6c6c6;
@@ -53,15 +96,15 @@ body {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  background-image: url('../svg/dark_icon.svg');
+  background-image: url('../img/svg/dark_icon.svg');
 }
 
 .theme-switcher-light {
-  background-image: url('../svg/light_icon.svg');
+  background-image: url('../img/svg/light_icon.svg');
 }
 
 .score {
-  padding: 10px 30px;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -94,7 +137,7 @@ body {
 
 .field {
   width: fit-content;
-  margin: 15px auto;
+  margin: 15px auto 0;
   display: grid;
   grid-auto-flow: row;
 
@@ -148,13 +191,13 @@ body {
 
   &.bomb {
     background-color: #c6c6c6;
-    background-image: url('../svg/bomb_icon.svg');
+    background-image: url('../img/svg/bomb_icon.svg');
     background-size: 20px;
     background-position: center;
     background-repeat: no-repeat;
 
     &.dark-theme {
-      background-image: url('../svg/light_bomb_icon.svg');
+      background-image: url('../img/svg/light_bomb_icon.svg');
       background-color: #303030;
       color: #ffffff;
       border-color: #000000;
@@ -164,7 +207,7 @@ body {
   }
 
   &.flag {
-    background-image: url('../svg/flag_icon.svg');
+    background-image: url('../img/svg/flag_icon.svg');
     background-size: 21px;
     background-position: center;
   }
