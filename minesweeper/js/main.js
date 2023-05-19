@@ -1,6 +1,9 @@
-import createMatrix from "./utils/createMatrix.js";
-import renderMatrix from "./utils/renderMatrix.js";
+// import createMatrix from "./utils/createMatrix.js";
+// import renderMatrix from "./utils/renderMatrix.js";
+import difficultySelection from "./handlers/difficultySelection.js";
 
-const matrix = createMatrix(10, 10);
+// const matrix = createMatrix(10, 10);
 
-renderMatrix(matrix);
+// renderMatrix(matrix);
+
+difficultySelection();
