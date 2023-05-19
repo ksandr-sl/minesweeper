@@ -1,27 +1,218 @@
 @import "nullstyle.scss";
 
+body {
+  background-color: #bbbbbb;
+}
+
+.container {
+  position: relative;
+  top: 20px;
+  padding-top: 10px;
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  background-color: #c6c6c6;
+  border: 5px solid #808080;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  box-shadow: 0 0 5px #808080;
+
+  &.dark-theme {
+    background-color: #303030;
+    color: #ffffff;
+    border-color: #000000;
+    border-top-color: #808080;
+    border-left-color: #808080;
+  }
+}
+
+.new-game {
+  width: 100px;
+  height: 30px;
+  margin: 0 auto;
+  line-height: 30px;
+  font-size: 18px;
+  border: 2px solid #808080;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  cursor: pointer;
+
+  &.dark-theme {
+    background-color: #303030;
+    color: #ffffff;
+    border-color: #000000;
+    border-top-color: #808080;
+    border-left-color: #808080;
+  }
+}
+
+.theme-switcher-dark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-image: url('../svg/dark_icon.svg');
+}
+
+.theme-switcher-light {
+  background-image: url('../svg/light_icon.svg');
+}
+
+.score {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.clicks,
+.seconds {
+  width: 100px;
+  font-size: 16px;
+}
+
+.clicks-counter,
+.seconds-counter {
+  margin-top: 5px;
+  height: 30px;
+  line-height: 26px;
+  font-size: 20px;
+  font-weight: 600;
+  border: 2px solid #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+
+  &.dark-theme {
+    background-color: #303030;
+    color: #ffffff;
+    border-color: #000000;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+  }
+}
+
 .field {
   width: fit-content;
-  margin: 50px auto;
+  margin: 15px auto;
   display: grid;
   grid-auto-flow: row;
-  row-gap: 1px;
+
+  border: 5px solid #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  &.dark-theme {
+    background-color: #303030;
+    color: #ffffff;
+    border-color: #000000;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+  }
 }
 
 .field-row {
   display: grid;
   grid-auto-flow: column;
-  column-gap: 1px;
 }
 
 .cell {
   width: 25px;
   height: 25px;
-  background-color: gray;
+  background-color: #c6c6c6;
   cursor: pointer;
+  text-align: center;
+  line-height: 25px;
+
+  border: 2px solid #808080;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+
+  &.dark-theme {
+    background-color: #303030;
+    color: #ffffff;
+    border-color: #000000;
+    border-top-color: #808080;
+    border-left-color: #808080;
+  }
+
+  &.empty {
+    // background-color: #c6c6c6;
+    &.dark-theme {
+      background-color: #303030;
+    }
+  }
 
   &.bomb {
-    background-color: black;
-    border-radius: 50%;
+    background-color: #c6c6c6;
+    background-image: url('../svg/bomb_icon.svg');
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.dark-theme {
+      background-image: url('../svg/light_bomb_icon.svg');
+      background-color: #303030;
+      color: #ffffff;
+      border-color: #000000;
+      border-top-color: #808080;
+      border-left-color: #808080;
+    }
   }
+
+  &.flag {
+    background-image: url('../svg/flag_icon.svg');
+    background-size: 21px;
+    background-position: center;
+  }
+
+  &.test {
+    box-shadow: none;
+    background-color: #c6c6c6;
+    border: 1px solid #808080;
+    border-right: none;
+    border-bottom: none;
+    &.dark-theme {
+      background-color: #303030;
+      border-color: #000000;
+    }
+  }
+
+  &.color-1 {
+    color: blue;
+  }
+  &.color-2 {
+    color: green;
+  }
+  &.color-3 {
+    color: red;
+  }
+  &.color-4 {
+    color: darkblue;
+  }
+  &.color-5 {
+    color: brown;
+  }
+  &.color-6 {
+    color: turquoise;
+  }
+}
+
+.game-over,
+.victory {
+  width: fit-content;
+  margin: 40px auto 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.game-over {
+  color: red;
+}
+
+.victory {
+  color: green;
 }
