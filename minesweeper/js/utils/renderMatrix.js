@@ -72,7 +72,7 @@ export default function renderMatrix(matrix) {
     field.append(row);
 
     //cell
-    for (let j = 0; j < matrix.length; j++) {
+    for (let j = 0; j < matrix[i].length; j++) {
       const cell = document.createElement('div');
       cell.classList.add('c-' + matrix[i][j].number);
       cell.classList.add('cell');

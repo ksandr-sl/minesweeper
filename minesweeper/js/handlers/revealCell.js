@@ -45,11 +45,11 @@ export default function revealCell(matrix, score) {
       if (y > 0 && !matrix[y - 1][x].open) cellsAround.push(matrix[y - 1][x]);
       if (y < matrix.length - 1 && !matrix[y + 1][x].open) cellsAround.push(matrix[y + 1][x]);
       if (x > 0 && !matrix[y][x - 1].open) cellsAround.push(matrix[y][x - 1]);
-      if (x < matrix.length - 1 && !matrix[y][x + 1].open) cellsAround.push(matrix[y][x + 1]);
+      if (x < matrix[0].length - 1 && !matrix[y][x + 1].open) cellsAround.push(matrix[y][x + 1]);
       if (y > 0 && x > 0 && !matrix[y - 1][x - 1].open) cellsAround.push(matrix[y - 1][x - 1]);
-      if (y > 0 && x < matrix.length - 1 && !matrix[y - 1][x + 1].open) cellsAround.push(matrix[y - 1][x + 1]);
+      if (y > 0 && x < matrix[0].length - 1 && !matrix[y - 1][x + 1].open) cellsAround.push(matrix[y - 1][x + 1]);
       if (y < matrix.length - 1 && x > 0 && !matrix[y + 1][x - 1].open) cellsAround.push(matrix[y + 1][x - 1]);
-      if (y < matrix.length - 1 && x < matrix.length - 1 && !matrix[y + 1][x + 1].open) cellsAround.push(matrix[y + 1][x + 1]);
+      if (y < matrix.length - 1 && x < matrix[0].length - 1 && !matrix[y + 1][x + 1].open) cellsAround.push(matrix[y + 1][x + 1]);
 
       cellsAround.forEach(e => {
         e.open = true;

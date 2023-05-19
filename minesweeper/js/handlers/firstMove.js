@@ -9,15 +9,28 @@ export default function firstMove(matrix, score) {
     const x = +event.target.getAttribute('x');
 
     matrix[y][x].open = true;
+    let maxBombs = 10;
     let bombsCount = 0;
 
-    while (bombsCount < 10) {
+    switch (matrix.length) {
+      case 30:
+        maxBombs = 50;
+        break;
+      case 20:
+        maxBombs = 30;
+        break;
+      default:
+        maxBombs = 10;
+        break;
+    }
+
+    while (bombsCount < maxBombs) {
       for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix.length; j++) {
+        for (let j = 0; j < matrix[i].length; j++) {
 
           let random = Math.random() * 10;
 
-          if (!matrix[i][j].open && bombsCount < 10 && random < 1) {
+          if (!matrix[i][j].open && bombsCount < maxBombs && random < 0.5) {
             matrix[i][j].isBomb = true;
             bombsCount++;
           }
@@ -37,11 +50,11 @@ export default function firstMove(matrix, score) {
       if (y > 0) cellsAround.push(matrix[y - 1][x]);
       if (y < matrix.length - 1) cellsAround.push(matrix[y + 1][x]);
       if (x > 0) cellsAround.push(matrix[y][x - 1]);
-      if (x < matrix.length - 1) cellsAround.push(matrix[y][x + 1]);
+      if (x < matrix[0].length - 1) cellsAround.push(matrix[y][x + 1]);
       if (y > 0 && x > 0) cellsAround.push(matrix[y - 1][x - 1]);
-      if (y > 0 && x < matrix.length - 1) cellsAround.push(matrix[y - 1][x + 1]);
+      if (y > 0 && x < matrix[0].length - 1) cellsAround.push(matrix[y - 1][x + 1]);
       if (y < matrix.length - 1 && x > 0) cellsAround.push(matrix[y + 1][x - 1]);
-      if (y < matrix.length - 1 && x < matrix.length - 1) cellsAround.push(matrix[y + 1][x + 1]);
+      if (y < matrix.length - 1 && x < matrix[0].length - 1) cellsAround.push(matrix[y + 1][x + 1]);
 
       cellsAround.forEach(e => {
         if (e.isBomb) {

@@ -2,7 +2,7 @@ export default function checkVictory(matrix, score) {
   let revealedCells = 0;
 
   for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix.length; j++) {
+    for (let j = 0; j < matrix[0].length; j++) {
 
       if (matrix[i][j].open) {
         revealedCells++;
