@@ -13,7 +13,7 @@ body {
   font-weight: 700;
   text-align: center;
   color: transparent;
-  background-image: url('../img/gif/rock_explosion.gif');
+  background-image: url('../accets/gif/rock_explosion.gif');
   background-position: -120px -100px;
   background-size: 900px;
   background-clip: text;
@@ -96,11 +96,11 @@ body {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  background-image: url('../img/svg/dark_icon.svg');
+  background-image: url('../accets/svg/dark_icon.svg');
 }
 
 .theme-switcher-light {
-  background-image: url('../img/svg/light_icon.svg');
+  background-image: url('../accets/svg/light_icon.svg');
 }
 
 .score {
@@ -191,13 +191,13 @@ body {
 
   &.bomb {
     background-color: #c6c6c6;
-    background-image: url('../img/svg/bomb_icon.svg');
+    background-image: url('../accets/svg/bomb_icon.svg');
     background-size: 20px;
     background-position: center;
     background-repeat: no-repeat;
 
     &.dark-theme {
-      background-image: url('../img/svg/light_bomb_icon.svg');
+      background-image: url('../accets/svg/light_bomb_icon.svg');
       background-color: #303030;
       color: #ffffff;
       border-color: #000000;
@@ -207,7 +207,7 @@ body {
   }
 
   &.flag {
-    background-image: url('../img/svg/flag_icon.svg');
+    background-image: url('../accets/svg/flag_icon.svg');
     background-size: 21px;
     background-position: center;
   }
