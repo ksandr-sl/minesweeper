@@ -1,13 +1,16 @@
 import checkVictory from "../utils/checkVictory.js";
 
-export default function revealCell(matrix, score) {
+export default function revealCell(matrix, score, winAudio, defeatAudio, longShovel, shovels) {
   return event => {
     event.target.classList.remove('flag');
     const y = +event.target.getAttribute('y');
     const x = +event.target.getAttribute('x');
-
+    const shovel = shovels[Math.floor(Math.random() * 4)];
 
     if (matrix[y][x].isBomb) {
+      defeatAudio.sound.currentTime = 0;
+      defeatAudio.play();
+
       event.target.classList.add('bomb');
 
       const gameOver = document.createElement('div');
@@ -16,6 +19,9 @@ export default function revealCell(matrix, score) {
       document.body.append(gameOver);
 
     } else if (matrix[y][x].bombsAround > 0) {
+      shovel.sound.currentTime = 0;
+      shovel.play();
+
       matrix[y][x].open = true;
 
       let cell = document.querySelector('.c-' + matrix[y][x].number);
@@ -28,14 +34,26 @@ export default function revealCell(matrix, score) {
       score.clicks++;
 
       const victory = checkVictory(matrix, score);
-      if (victory) document.body.append(victory);
+      if (victory) {
+        winAudio.sound.currentTime = 0;
+        winAudio.play();
+        document.body.append(victory);
+      }
     } else {
+      longShovel.sound.currentTime = 0;
+      longShovel.sound.playbackRate = 2;
+      longShovel.play();
+
       openAround(matrix, y, x);
 
       score.clicks++;
 
       const victory = checkVictory(matrix, score);
-      if (victory) document.body.append(victory);
+      if (victory) {
+        winAudio.sound.currentTime = 0;
+        winAudio.play();
+        document.body.append(victory);
+      }
     }
 
     function openAround(matrix, y, x) {

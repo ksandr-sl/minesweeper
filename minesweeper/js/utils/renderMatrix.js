@@ -3,12 +3,22 @@ import revealCell from "../handlers/revealCell.js";
 import addFlag from "../handlers/addFlag.js";
 import startNewGame from "../handlers/startNewGame.js";
 import switchTheme from "../handlers/switchTheme.js";
+import Sound from "../handlers/sound.js";
 
 export default function renderMatrix(matrix) {
   let score = {
     clicks: 0,
     seconds: 0
   };
+  const flagAudio = new Sound('./accets/sound/flag.mp3');
+  const defeatAudio = new Sound('./accets/sound/kurwa.mp3');
+  const winAudio = new Sound('./accets/sound/good-job.mp3');
+  const longShovel = new Sound('./accets/sound/long-shovel.mp3');
+  const shovel1 = new Sound('./accets/sound/shovel-1.mp3');
+  const shovel2 = new Sound('./accets/sound/shovel-2.mp3');
+  const shovel3 = new Sound('./accets/sound/shovel-3.mp3');
+  const shovel4 = new Sound('./accets/sound/shovel-4.mp3');
+  const shovels = [shovel1, shovel2, shovel3, shovel4];
 
   //container
   const container = document.createElement('div');
@@ -80,8 +90,8 @@ export default function renderMatrix(matrix) {
       cell.setAttribute('x', matrix[i][j].x);
 
       //cell event
-      cell.addEventListener('click', revealCell(matrix, score));
-      cell.addEventListener('contextmenu', addFlag);
+      cell.addEventListener('click', revealCell(matrix, score, winAudio, defeatAudio, longShovel, shovels));
+      cell.addEventListener('contextmenu', addFlag(flagAudio));
       row.append(cell);
     }
   }

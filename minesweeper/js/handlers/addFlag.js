@@ -1,7 +1,11 @@
-export default function addFlag(event) {
-  event.preventDefault();
+export default function addFlag(flagAudio) {
+  return event => {
+    event.preventDefault();
 
-  if (!event.target.classList.contains('open') && !event.target.classList.contains('bomb')) {
-    event.target.classList.toggle('flag');
+    if (!event.target.classList.contains('open') && !event.target.classList.contains('bomb')) {
+      event.target.classList.toggle('flag');
+      flagAudio.sound.currentTime = 0;
+      flagAudio.play();
+    }
   }
 }
