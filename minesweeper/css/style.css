@@ -311,20 +311,29 @@ body {
   color: turquoise;
 }
 
+.status {
+  position: fixed;
+  top: 150px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
 .game-over,
 .victory {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 40px auto 0;
-  font-size: 20px;
   font-weight: 700;
+  background-color: rgba(198, 198, 198, 0.7764705882);
 }
 
 .game-over {
+  font-size: 100px;
   color: red;
 }
 
 .victory {
+  font-size: 40px;
   color: green;
 }/*# sourceMappingURL=style.css.map */
