@@ -1,17 +1,21 @@
 export default function firstMove(matrix, score) {
   return event => {
 
+    // seconds counter
     setInterval(() => {
       score.seconds++;
     }, 1000);
 
+    // get coordinates
     const y = +event.target.getAttribute('y');
     const x = +event.target.getAttribute('x');
 
+    // open first cell
     matrix[y][x].open = true;
+
+    // difficulty
     let maxBombs = 10;
     let bombsCount = 0;
-
     switch (matrix.length) {
       case 30:
         maxBombs = 50;
@@ -24,6 +28,7 @@ export default function firstMove(matrix, score) {
         break;
     }
 
+    // set bombs in cells
     while (bombsCount < maxBombs) {
       for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
@@ -38,8 +43,9 @@ export default function firstMove(matrix, score) {
       }
     }
 
+    // set number of bombs around in each cell
     checkAround(matrix, y, x);
-    event.target.classList.add('test');
+    event.target.classList.add('opened');
     document.querySelector('.c-' + matrix[y][x].number).innerText = matrix[y][x].bombsAround;
 
     function checkAround(matrix, y, x) {
@@ -60,12 +66,8 @@ export default function firstMove(matrix, score) {
         if (e.isBomb) {
           matrix[y][x].bombsAround++;
           e.bombsAround = '';
-
-          document.querySelector('.c-' + matrix[e.y][e.x].number).classList.add('bomb'); //+
         } else if (e.bombsAround === undefined) {
           checkAround(matrix, e.y, e.x);
-          document.querySelector('.c-' + matrix[e.y][e.x].number).classList.add('empty');//+
-          document.querySelector('.c-' + matrix[e.y][e.x].number).innerText = matrix[e.y][e.x].bombsAround;//+
         }
       })
     }

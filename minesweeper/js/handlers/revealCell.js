@@ -2,11 +2,14 @@ import checkVictory from "../utils/checkVictory.js";
 
 export default function revealCell(matrix, score, winAudio, defeatAudio, longShovel, shovels) {
   return event => {
-    event.target.classList.remove('flag');
+    if (event.target.classList.contains('flag')) return;
+
+    // get coordinates
     const y = +event.target.getAttribute('y');
     const x = +event.target.getAttribute('x');
     const shovel = shovels[Math.floor(Math.random() * 4)];
 
+    // game over if opened cell is bomb
     if (matrix[y][x].isBomb) {
       defeatAudio.sound.currentTime = 0;
       defeatAudio.play();
@@ -18,6 +21,7 @@ export default function revealCell(matrix, score, winAudio, defeatAudio, longSho
       gameOver.innerText = 'Game over. Try again';
       document.body.append(gameOver);
 
+      // show number of bombs around
     } else if (matrix[y][x].bombsAround > 0) {
       shovel.sound.currentTime = 0;
       shovel.play();
@@ -27,33 +31,20 @@ export default function revealCell(matrix, score, winAudio, defeatAudio, longSho
       let cell = document.querySelector('.c-' + matrix[y][x].number);
 
       cell.innerText = matrix[y][x].bombsAround;
+      document.querySelector('.c-' + matrix[y][x].number).classList.add('opened');
       cell.classList.add('color-' + matrix[y][x].bombsAround);
-
-      document.querySelector('.c-' + matrix[y][x].number).classList.add('test');
-
       score.clicks++;
+      checkVictory(matrix, score, winAudio);
 
-      const victory = checkVictory(matrix, score);
-      if (victory) {
-        winAudio.sound.currentTime = 0;
-        winAudio.play();
-        document.body.append(victory);
-      }
+      // show empty cells
     } else {
       longShovel.sound.currentTime = 0;
       longShovel.sound.playbackRate = 2;
       longShovel.play();
 
       openAround(matrix, y, x);
-
       score.clicks++;
-
-      const victory = checkVictory(matrix, score);
-      if (victory) {
-        winAudio.sound.currentTime = 0;
-        winAudio.play();
-        document.body.append(victory);
-      }
+      checkVictory(matrix, score, winAudio);
     }
 
     function openAround(matrix, y, x) {
@@ -74,21 +65,19 @@ export default function revealCell(matrix, score, winAudio, defeatAudio, longSho
 
         if (!e.isBomb && cellsAround.length > 0) {
           if (e.bombsAround > 0) {
-            // document.querySelector('.c-' + matrix[y][x].number).classList.add('empty');
-            // document.querySelector('.c-' + matrix[y][x].number).innerText = matrix[y][x].bombsAround;
-
-            document.querySelector('.c-' + matrix[e.y][e.x].number).classList.add('test');
+            document.querySelector('.c-' + matrix[e.y][e.x].number).classList.add('opened');
             document.querySelector('.c-' + matrix[e.y][e.x].number).classList.add('color-' + matrix[e.y][e.x].bombsAround);
-
             document.querySelector('.c-' + matrix[e.y][e.x].number).innerText = matrix[e.y][e.x].bombsAround;
+
           } else if (e.bombsAround === '') {
-            document.querySelector('.c-' + e.number).classList.add('test');
+            document.querySelector('.c-' + e.number).classList.add('opened');
             openAround(matrix, e.y, e.x);
           }
         }
 
       })
     }
+
   }
 }
 
