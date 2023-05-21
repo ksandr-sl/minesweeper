@@ -260,9 +260,6 @@ body {
   border-top-color: #808080;
   border-left-color: #808080;
 }
-.cell.empty.dark-theme {
-  background-color: #303030;
-}
 .cell.bomb {
   background-color: #c6c6c6;
   background-image: url("../accets/svg/bomb_icon.svg");
@@ -283,7 +280,7 @@ body {
   background-size: 21px;
   background-position: center;
 }
-.cell.test {
+.cell.opened {
   -webkit-box-shadow: none;
           box-shadow: none;
   background-color: #c6c6c6;
@@ -291,7 +288,7 @@ body {
   border-right: none;
   border-bottom: none;
 }
-.cell.test.dark-theme {
+.cell.opened.dark-theme {
   background-color: #303030;
   border-color: #000000;
 }

@@ -182,13 +182,6 @@ body {
     border-left-color: #808080;
   }
 
-  &.empty {
-    // background-color: #c6c6c6;
-    &.dark-theme {
-      background-color: #303030;
-    }
-  }
-
   &.bomb {
     background-color: #c6c6c6;
     background-image: url('../accets/svg/bomb_icon.svg');
@@ -212,7 +205,7 @@ body {
     background-position: center;
   }
 
-  &.test {
+  &.opened {
     box-shadow: none;
     background-color: #c6c6c6;
     border: 1px solid #808080;
