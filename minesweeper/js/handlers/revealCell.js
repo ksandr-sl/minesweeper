@@ -1,6 +1,6 @@
 import checkVictory from "../utils/checkVictory.js";
 
-export default function revealCell(matrix, score, winAudio, defeatAudio, longShovel, shovels) {
+export default function revealCell(matrix, score, scoreUpdate, winAudio, defeatAudio, longShovel, shovels) {
   return event => {
     if (event.target.classList.contains('flag')) return;
 
@@ -19,7 +19,10 @@ export default function revealCell(matrix, score, winAudio, defeatAudio, longSho
       const gameOver = document.createElement('div');
       gameOver.classList.add('game-over');
       gameOver.innerText = 'Game over. Try again';
-      document.body.append(gameOver);
+      document.querySelector('.status').style.display = 'block' ;
+      document.querySelector('.status').append(gameOver);
+
+      clearInterval(scoreUpdate);
 
       // show number of bombs around
     } else if (matrix[y][x].bombsAround > 0) {
@@ -34,7 +37,7 @@ export default function revealCell(matrix, score, winAudio, defeatAudio, longSho
       document.querySelector('.c-' + matrix[y][x].number).classList.add('opened');
       cell.classList.add('color-' + matrix[y][x].bombsAround);
       score.clicks++;
-      checkVictory(matrix, score, winAudio);
+      checkVictory(matrix, score, scoreUpdate, winAudio);
 
       // show empty cells
     } else {
@@ -44,7 +47,7 @@ export default function revealCell(matrix, score, winAudio, defeatAudio, longSho
 
       openAround(matrix, y, x);
       score.clicks++;
-      checkVictory(matrix, score, winAudio);
+      checkVictory(matrix, score, scoreUpdate, winAudio);
     }
 
     function openAround(matrix, y, x) {

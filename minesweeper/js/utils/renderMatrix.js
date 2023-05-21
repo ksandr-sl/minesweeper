@@ -73,8 +73,19 @@ export default function renderMatrix(matrix) {
   field.classList.add('field');
   container.append(field);
 
+  // create status
+  const status = document.createElement('div');
+  status.classList.add('status');
+  container.append(status);
+
   // field event
   field.addEventListener('click', firstMove(matrix, score), {capture: true, once: true });
+
+  // score update
+  const scoreUpdate = setInterval(() => {
+    clicksCounter.innerText = score.clicks;
+    secondsCounter.innerText = score.seconds;
+  }, 100)
 
   // create row
   for (let i = 0; i < matrix.length; i++) {
@@ -91,14 +102,9 @@ export default function renderMatrix(matrix) {
       cell.setAttribute('x', matrix[i][j].x);
 
       // cell event
-      cell.addEventListener('click', revealCell(matrix, score, winAudio, defeatAudio, longShovel, shovels));
+      cell.addEventListener('click', revealCell(matrix, score, scoreUpdate, winAudio, defeatAudio, longShovel, shovels));
       cell.addEventListener('contextmenu', addFlag(flagAudio));
       row.append(cell);
     }
   }
-  // score update
-  setInterval(() => {
-    clicksCounter.innerText = score.clicks;
-    secondsCounter.innerText = score.seconds;
-  }, 100)
 }

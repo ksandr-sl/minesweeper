@@ -1,4 +1,4 @@
-export default function checkVictory(matrix, score, winAudio) {
+export default function checkVictory(matrix, score, scoreUpdate, winAudio) {
   let openedCells = 0;
 
   // opened cells counter
@@ -15,9 +15,17 @@ export default function checkVictory(matrix, score, winAudio) {
   if (openedCells == 90) {
     winAudio.sound.currentTime = 0;
     winAudio.play();
+    setTimeout(() => {
+      winAudio.stop();
+      winAudio.sound.currentTime = 0;
+    }, 3900)
+
     const victory = document.createElement('div');
     victory.classList.add('victory');
     victory.innerText = `Hooray! You found all mines in ${score.seconds} seconds and ${score.clicks} moves!`;
-    return victory;
+    document.querySelector('.status').style.display = 'block' ;
+    document.querySelector('.status').append(victory);
+
+    clearInterval(scoreUpdate);
   }
 }
